@@ -9,7 +9,7 @@ function [time, volt] = readWaveform(fileName)
 
 % find start of waveform data
 text = fileread(fileName);
-dataHeader = 'Waveform Data';
+dataHeader = '\[Waveform Data\]';
 m = regexp(text, dataHeader);
 n = regexp(text, '\n');
 numHeaderLines = sum(n<m);

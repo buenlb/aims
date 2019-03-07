@@ -1,4 +1,4 @@
-function [] = readAIMS(fileName, plots, folderName, newcAxis, newAxis)
+function rawData = readAIMS(fileName, plots, folderName, newcAxis, newAxis)
 
 % readAIMS - This code reads AIM files containing hydrophone data.
 %    [] = readAIMS(fileName, folderName, newAxis)
@@ -176,22 +176,12 @@ for d = 1:p_num
     dummy.(param_names{d}) = allData(:, :, d);
 end
 
-dummy.xAxis = xAxis; % xy axis are not necessarily in X and Y directions, they refer to XY axis of the 2D output plots
-dummy.yAxis = yAxis; % xy axis are not necessarily in X and Y directions, they refer to XY axis of the 2D output plots
-dummy.cAxis = caxis;
-dummy.xName = xName;
-dummy.yName = yName;
-
-saveName = fileName(1:end-4);
-saveName = cleanFilename(saveName);
-
-eval([saveName '= dummy;'])
-eval(['save ' saveName ' ' saveName])
-
 % return to original folder
 if nargin > 2
     cd(startFolder)
 end
+
+% fclose('fid')
 
 end
 
